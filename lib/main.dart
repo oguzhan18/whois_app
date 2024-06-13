@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last, prefer_const_constructors
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors, library_private_types_in_public_api, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -39,7 +39,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('WHOIS Lookup'),
+        centerTitle: true,
+        foregroundColor: Colors.blueAccent,
+        title: Text('WHO IS APP'),
         actions: [
           IconButton(
             icon: Icon(Icons.web),
@@ -50,45 +52,62 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.code),
             onPressed: () {
-              _launchURL('https://github.com/yourrepository');
+              _launchURL('https://github.com/oguzhan18/whois_app');
             },
           ),
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              child: Text(
-                'Menu',
-                style: TextStyle(color: Colors.white, fontSize: 24),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blueGrey, Colors.blue],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              SizedBox(
+                height: 30,
               ),
-              decoration: BoxDecoration(
-                color: Colors.blue,
+              Center(
+                child: Text(
+                  'WHOIS Lookup',
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-            ),
-            ListTile(
-              leading: Icon(Icons.search, color: Colors.blue),
-              title: Text('WHOIS Lookup'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => WhoisLookupPage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.list, color: Colors.blue),
-              title: Text('Saved Domains'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SavedDomainsPage()),
-                );
-              },
-            ),
-          ],
+              SizedBox(
+                height: 100.0,
+              ),
+              ListTile(
+                leading: Icon(Icons.search, color: Colors.white),
+                title:
+                    Text('WHOIS Lookup', style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WhoisLookupPage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.list, color: Colors.white),
+                title: Text('Saved Domains',
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SavedDomainsPage()),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
       body: Padding(
